@@ -40,8 +40,6 @@ proguard/
 
 # Gradle files
 .gradle
-gradle/
-gradlew*
 
 # Realm files
 realm_version_check.timestamp
