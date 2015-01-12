@@ -17,16 +17,16 @@ app/src/main/jniLibs/armeabi/libvpn.so: jni/vpn.c jni/Android.mk
 	./autogen.sh || exit 1 ;\
 	fi ;\
 	if [ ! -f shadowvpn-android-arm/lib/libshadowvpn.a ]; then \
-		dist-build/android-arm.sh || exit 1 ;\
+		../dist-build/android-arm.sh || exit 1 ;\
 	fi ;\
 	if [ ! -f shadowvpn-android-armv7/lib/libshadowvpn.a ]; then \
-		dist-build/android-armv7.sh || exit 1 ;\
+		../dist-build/android-armv7.sh || exit 1 ;\
 	fi ;\
 	if [ ! -f shadowvpn-android-mips/lib/libshadowvpn.a ]; then \
-		dist-build/android-mips.sh || exit 1 ;\
+		../dist-build/android-mips.sh || exit 1 ;\
 	fi ;\
 	if [ ! -f shadowvpn-android-x86/lib/libshadowvpn.a ]; then \
-		dist-build/android-x86.sh || exit 1 ;\
+		../dist-build/android-x86.sh || exit 1 ;\
 	fi ;\
 	popd ;\
 	pushd jni ;\
