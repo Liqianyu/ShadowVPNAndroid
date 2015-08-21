@@ -46,3 +46,5 @@ realm_version_check.timestamp
 
 # JNI files
 *jniLibs/
+.gradletasknamecache
+libs/

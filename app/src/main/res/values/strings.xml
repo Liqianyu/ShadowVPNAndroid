@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">ShadowVPN</string>
-	<string name="title_activity_main">@string/app_name</string>
-	<string name="title_activity_configure_edit">Edit Configure</string>
+    <string name="app_name">ShadowVPN</string>
+    <string name="title_activity_main">@string/app_name</string>
+    <string name="title_activity_configure_edit">Edit Configure</string>
 
-	<string name="options_menu_add">Add Configure</string>
-	<string name="options_menu_discard">Discard changes</string>
-	<string name="options_menu_delete">Delete</string>
+    <string name="options_menu_add">Add Configure</string>
+    <string name="options_menu_discard">Discard changes</string>
+    <string name="options_menu_delete">Delete</string>
 
-	<string name="context_menu_stop_configure">Disconnect</string>
-	<string name="context_menu_edit_configure">Edit Configure</string>
-	<string name="context_menu_delete_configure">Delete Configure</string>
+    <string name="context_menu_stop_configure">Disconnect</string>
+    <string name="context_menu_edit_configure">Edit Configure</string>
+    <string name="context_menu_delete_configure">Delete Configure</string>
 
-	<string name="label_configure_title">Title</string>
-	<string name="label_configure_server_ip">Server IP</string>
-	<string name="label_configure_port">Port</string>
-	<string name="label_configure_password">Password</string>
-	<string name="label_configure_local_ip">Local IP</string>
-	<string name="label_configure_switch_bypass_china_routes">Bypass China Routes</string>
-	<string name="label_configure_maximum_transmission_units">MTU</string>
+    <string name="label_configure_title">Title</string>
+    <string name="label_configure_server_ip">Server IP</string>
+    <string name="label_configure_port">Port</string>
+    <string name="label_configure_password">Password</string>
+    <string name="label_configure_user_token">User Token</string>
+    <string name="label_configure_local_ip">Local IP</string>
+    <string name="label_configure_switch_bypass_china_routes">Bypass China Routes</string>
+    <string name="label_configure_maximum_transmission_units">MTU</string>
+    <string name="label_configure_concurrency">Concurrency Number</string>
 
-	<string name="toast_vpn_configure_title_null">Title cannot be null</string>
-	<string name="toast_vpn_configure_server_ip_null">Server IP cannot be null</string>
-	<string name="toast_vpn_configure_port_null">Port be null</string>
-	<string name="toast_vpn_configure_password_null">Password cannot be null</string>
-	<string name="toast_vpn_configure_local_ip_null">Local IP cannot be null</string>
-	<string name="toast_vpn_configure_maximum_transmission_units_null">MTU cannot be null</string>
-	<string name="toast_vpn_configure_exists">The Configure[%1$s] exists, please change the title</string>
+    <string name="toast_vpn_configure_title_null">Title cannot be null</string>
+    <string name="toast_vpn_configure_server_ip_null">Server IP cannot be null</string>
+    <string name="toast_vpn_configure_port_null">Port be null</string>
+    <string name="toast_vpn_configure_password_null">Password cannot be null</string>
+    <string name="toast_vpn_configure_local_ip_null">Local IP cannot be null</string>
+    <string name="toast_vpn_configure_maximum_transmission_units_null">MTU cannot be null</string>
+    <string name="toast_vpn_configure_exists">The Configure[%1$s] exists, please change the title</string>
 
 </resources>

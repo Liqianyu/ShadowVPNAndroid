@@ -5,98 +5,101 @@ import android.util.Log;
 
 import java.io.IOException;
 
-public class ShadowVPN
-{
-	private static final int DEFAULT_MAXIMUM_TRANSMISSION_UNITS = 1440;
+public class ShadowVPN {
+    private static final int DEFAULT_MAXIMUM_TRANSMISSION_UNITS = 1440;
 
-	private final ParcelFileDescriptor mTUNFileDescriptor;
+    private static final int DEFAULT_CONCURRENCY = 1;
 
-	private final String mPassword;
+    private final ParcelFileDescriptor mTUNFileDescriptor;
 
-	private final String mServer;
+    private final String mPassword;
 
-	private final int mPort;
+    private final String mUserToken;
 
-	private final int mMaximumTransmissionUnits;
+    private final String mServer;
 
-	private boolean mIsRunning;
+    private final int mPort;
 
-	public ShadowVPN(final ParcelFileDescriptor pTUNFileDescriptor, final String pPassword, final String pServer, final int pPort)
-	{
-		this(pTUNFileDescriptor, pPassword, pServer, pPort, ShadowVPN.DEFAULT_MAXIMUM_TRANSMISSION_UNITS);
-	}
+    private final int mMaximumTransmissionUnits;
 
-	public ShadowVPN(final ParcelFileDescriptor pTUNFileDescriptor, final String pPassword, final String pServer, final int pPort, final int pMaximumTransmissionUnits)
-	{
-		this.mTUNFileDescriptor = pTUNFileDescriptor;
+    private final int mConcurrency;
 
-		this.mPassword = pPassword;
+    private boolean mIsRunning;
 
-		this.mServer = pServer;
+    public ShadowVPN(final ParcelFileDescriptor pTUNFileDescriptor, final String pPassword, final String pUserToken,
+            final String pServer, final int pPort) {
+        this(pTUNFileDescriptor, pPassword, pUserToken, pServer, pPort,
+                ShadowVPN.DEFAULT_MAXIMUM_TRANSMISSION_UNITS, DEFAULT_CONCURRENCY);
+    }
 
-		this.mPort = pPort;
+    public ShadowVPN(final ParcelFileDescriptor pTUNFileDescriptor, final String pPassword, final String pUserToken,
+            final String pServer, final int pPort, final int pMaximumTransmissionUnits,
+            final int pConcurrency) {
+        this.mTUNFileDescriptor = pTUNFileDescriptor;
 
-		this.mMaximumTransmissionUnits = pMaximumTransmissionUnits;
-	}
+        this.mPassword = pPassword;
 
-	public void init() throws IOException
-	{
-		if (this.nativeInitVPN(this.mTUNFileDescriptor.getFd(), this.mPassword, this.mServer, this.mPort, this.mMaximumTransmissionUnits) != 0)
-		{
-			throw new IOException("Failed to create ShadowVPN");
-		}
-	}
+        this.mUserToken = pUserToken;
 
-	public void start()
-	{
-		if (this.mIsRunning)
-		{
-			return;
-		}
+        this.mServer = pServer;
 
-		this.mIsRunning = true;
+        this.mPort = pPort;
 
-		this.nativeRunVPN();
+        this.mMaximumTransmissionUnits = pMaximumTransmissionUnits;
 
-		this.mIsRunning = false;
-	}
+        this.mConcurrency = pConcurrency;
+    }
 
-	public void shouldStop()
-	{
-		this.mIsRunning = false;
+    public void init() throws IOException {
+        if (this.nativeInitVPN(this.mTUNFileDescriptor.getFd(), this.mPassword, this.mUserToken, this.mServer,
+                this.mPort, this.mMaximumTransmissionUnits, this.mConcurrency) != 0) {
+            throw new IOException("Failed to create ShadowVPN");
+        }
+    }
 
-		this.nativeStopVPN();
+    public void start() {
+        if (this.mIsRunning) {
+            return;
+        }
 
-		try
-		{
-			this.mTUNFileDescriptor.close();
-		}
-		catch (final IOException pIOException)
-		{
-			Log.e(ShadowVPN.class.getSimpleName(), "", pIOException);
-		}
-	}
+        this.mIsRunning = true;
 
-	public boolean isRunning()
-	{
-		return this.mIsRunning;
-	}
+        this.nativeRunVPN();
 
-	public int getSockFileDescriptor()
-	{
-		return this.nativeGetSockFd();
-	}
+        this.mIsRunning = false;
+    }
 
-	protected native int nativeInitVPN(final int pTUNFileDescriptor, final String pPassword, final String pServer, final int pPort, final int pMaximumTransmissionUnits);
+    public void shouldStop() {
+        this.mIsRunning = false;
 
-	protected native int nativeRunVPN();
+        this.nativeStopVPN();
 
-	protected native int nativeStopVPN();
+        try {
+            this.mTUNFileDescriptor.close();
+        } catch (final IOException pIOException) {
+            Log.e(ShadowVPN.class.getSimpleName(), "", pIOException);
+        }
+    }
 
-	protected native int nativeGetSockFd();
+    public boolean isRunning() {
+        return this.mIsRunning;
+    }
 
-	static
-	{
-		System.loadLibrary("vpn");
-	}
+    public int getSockFileDescriptor() {
+        return this.nativeGetSockFd();
+    }
+
+    protected native int nativeInitVPN(final int pTUNFileDescriptor, final String pPassword, final String pUserToken,
+            final String pServer, final int pPort, final int pMaximumTransmissionUnits,
+            final int pConcurrency);
+
+    protected native int nativeRunVPN();
+
+    protected native int nativeStopVPN();
+
+    protected native int nativeGetSockFd();
+
+    static {
+        System.loadLibrary("vpn");
+    }
 }

@@ -2,101 +2,104 @@ package org.shadowvpn.shadowvpn.model;
 
 import io.realm.RealmObject;
 
-public class ShadowVPNConfigure extends RealmObject
-{
-	private String title;
+public class ShadowVPNConfigure extends RealmObject {
+    private String title;
 
-	private String serverIP;
+    private String serverIP;
 
-	private int port;
+    private int port;
 
-	private String password;
+    private String password;
 
-	private String localIP;
+    private String userToken;
 
-	private int maximumTransmissionUnits;
+    private String localIP;
 
-	private boolean bypassChinaRoutes;
+    private int maximumTransmissionUnits;
 
-	private boolean selected;
+    private int concurrency;
 
-	public String getTitle()
-	{
-		return this.title;
-	}
+    private boolean bypassChinaRoutes;
 
-	public void setTitle(final String pTitle)
-	{
-		this.title = pTitle;
-	}
+    private boolean selected;
 
-	public String getServerIP()
-	{
-		return this.serverIP;
-	}
+    public String getTitle() {
+        return this.title;
+    }
 
-	public void setServerIP(final String pServerIP)
-	{
-		this.serverIP = pServerIP;
-	}
+    public void setTitle(final String pTitle) {
+        this.title = pTitle;
+    }
 
-	public int getPort()
-	{
-		return this.port;
-	}
+    public String getServerIP() {
+        return this.serverIP;
+    }
 
-	public void setPort(final int pPort)
-	{
-		this.port = pPort;
-	}
+    public void setServerIP(final String pServerIP) {
+        this.serverIP = pServerIP;
+    }
 
-	public String getPassword()
-	{
-		return this.password;
-	}
+    public int getPort() {
+        return this.port;
+    }
 
-	public void setPassword(final String pPassword)
-	{
-		this.password = pPassword;
-	}
+    public void setPort(final int pPort) {
+        this.port = pPort;
+    }
 
-	public String getLocalIP()
-	{
-		return this.localIP;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setLocalIP(final String pLocalIP)
-	{
-		this.localIP = pLocalIP;
-	}
+    public void setPassword(final String pPassword) {
+        this.password = pPassword;
+    }
 
-	public int getMaximumTransmissionUnits()
-	{
-		return this.maximumTransmissionUnits;
-	}
+    public String getUserToken() {
+        return userToken;
+    }
 
-	public void setMaximumTransmissionUnits(final int pMaximumTransmissionUnits)
-	{
-		this.maximumTransmissionUnits = pMaximumTransmissionUnits;
-	}
+    public void setUserToken(String pUserToken) {
+        this.userToken = userToken;
+    }
 
-	public boolean isBypassChinaRoutes()
-	{
-		return this.bypassChinaRoutes;
-	}
+    public String getLocalIP() {
+        return this.localIP;
+    }
 
-	public void setBypassChinaRoutes(final boolean pBypassChinaRoutes)
-	{
-		this.bypassChinaRoutes = pBypassChinaRoutes;
-	}
+    public void setLocalIP(final String pLocalIP) {
+        this.localIP = pLocalIP;
+    }
 
-	public boolean isSelected()
-	{
-		return this.selected;
-	}
+    public int getMaximumTransmissionUnits() {
+        return this.maximumTransmissionUnits;
+    }
 
-	public void setSelected(final boolean pSelected)
-	{
-		this.selected = pSelected;
-	}
+    public void setMaximumTransmissionUnits(final int pMaximumTransmissionUnits) {
+        this.maximumTransmissionUnits = pMaximumTransmissionUnits;
+    }
+
+    public int getConcurrency() {
+        return concurrency;
+    }
+
+    public void setConcurrency(int concurrency) {
+        this.concurrency = concurrency;
+    }
+
+    public boolean isBypassChinaRoutes() {
+        return this.bypassChinaRoutes;
+    }
+
+    public void setBypassChinaRoutes(final boolean pBypassChinaRoutes) {
+        this.bypassChinaRoutes = pBypassChinaRoutes;
+    }
+
+    public boolean isSelected() {
+        return this.selected;
+    }
+
+    public void setSelected(final boolean pSelected) {
+        this.selected = pSelected;
+    }
 }

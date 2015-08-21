@@ -4,112 +4,124 @@ import android.content.Context;
 
 import org.shadowvpn.shadowvpn.model.ShadowVPNConfigure;
 
+import java.util.Iterator;
+
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class ShadowVPNConfigureHelper
-{
-	public static final String DEFAULT_LOCAL_IP = "10.7.0.2";
+public class ShadowVPNConfigureHelper {
+    public static final String DEFAULT_LOCAL_IP = "10.7.0.2";
 
-	public static final int DEFAULT_MAXIMUM_TRANSMISSION_UNITS = 1440;
+    public static final int DEFAULT_MAXIMUM_TRANSMISSION_UNITS = 1440;
 
-	public static ShadowVPNConfigure create(final Context pContext, final String pTitle, final String pServerIP, final int pPort, final String pPassword, final String pLocalIP, final int pMaximumTransmissionUnits, final boolean pBypassChinaRoutes)
-	{
-		final Realm realm = Realm.getInstance(pContext);
-		realm.beginTransaction();
+    public static final int DEFAULT_CONCURRENCY = 1;
 
-		final ShadowVPNConfigure configure = realm.createObject(ShadowVPNConfigure.class);
-		configure.setTitle(pTitle);
-		configure.setServerIP(pServerIP);
-		configure.setPort(pPort);
-		configure.setPassword(pPassword);
-		configure.setLocalIP(pLocalIP);
-		configure.setMaximumTransmissionUnits(pMaximumTransmissionUnits);
-		configure.setBypassChinaRoutes(pBypassChinaRoutes);
+    public static ShadowVPNConfigure create(final Context pContext, final String pTitle,
+            final String pServerIP, final int pPort, final String pPassword, final String pUserToken, final String pLocalIP,
+            final int pMaximumTransmissionUnits, final int pConcurrency,
+            final boolean pBypassChinaRoutes) {
+        final Realm realm = Realm.getInstance(pContext);
+        realm.beginTransaction();
 
-		realm.commitTransaction();
+        final ShadowVPNConfigure configure = realm.createObject(ShadowVPNConfigure.class);
+        configure.setTitle(pTitle);
+        configure.setServerIP(pServerIP);
+        configure.setPort(pPort);
+        configure.setPassword(pPassword);
+        configure.setUserToken(pUserToken);
+        configure.setLocalIP(pLocalIP);
+        configure.setMaximumTransmissionUnits(pMaximumTransmissionUnits);
+        configure.setBypassChinaRoutes(pBypassChinaRoutes);
+        configure.setConcurrency(pConcurrency);
 
-		return configure;
-	}
+        realm.commitTransaction();
 
-	public static void delete(final Context pContext, final String pTitle)
-	{
-		final Realm realm = Realm.getInstance(pContext);
-		realm.beginTransaction();
+        return configure;
+    }
 
-		final RealmQuery<ShadowVPNConfigure> shadowVPNConfigureRealmQuery = realm.where(ShadowVPNConfigure.class);
-		shadowVPNConfigureRealmQuery.equalTo("title", pTitle);
+    public static void delete(final Context pContext, final String pTitle) {
+        final Realm realm = Realm.getInstance(pContext);
+        realm.beginTransaction();
 
-		shadowVPNConfigureRealmQuery.findAll().clear();
+        final RealmQuery<ShadowVPNConfigure> shadowVPNConfigureRealmQuery = realm
+                .where(ShadowVPNConfigure.class);
+        shadowVPNConfigureRealmQuery.equalTo("title", pTitle);
 
-		realm.commitTransaction();
-	}
+        shadowVPNConfigureRealmQuery.findAll().clear();
 
-	public static ShadowVPNConfigure exists(final Context pContext, final String pTitle)
-	{
-		final Realm realm = Realm.getInstance(pContext);
+        realm.commitTransaction();
+    }
 
-		final RealmQuery<ShadowVPNConfigure> shadowVPNConfigureRealmQuery = realm.where(ShadowVPNConfigure.class);
-		shadowVPNConfigureRealmQuery.equalTo("title", pTitle);
+    public static ShadowVPNConfigure exists(final Context pContext, final String pTitle) {
+        final Realm realm = Realm.getInstance(pContext);
 
-		return shadowVPNConfigureRealmQuery.findFirst();
-	}
+        final RealmQuery<ShadowVPNConfigure> shadowVPNConfigureRealmQuery = realm
+                .where(ShadowVPNConfigure.class);
+        shadowVPNConfigureRealmQuery.equalTo("title", pTitle);
 
-	public static RealmResults<ShadowVPNConfigure> getAll(final Context pContext)
-	{
-		final Realm realm = Realm.getInstance(pContext);
-		realm.beginTransaction();
+        return shadowVPNConfigureRealmQuery.findFirst();
+    }
 
-		final RealmQuery<ShadowVPNConfigure> query = realm.where(ShadowVPNConfigure.class);
-		final RealmResults<ShadowVPNConfigure> configures = query.findAll();
+    public static RealmResults<ShadowVPNConfigure> getAll(final Context pContext) {
+        final Realm realm = Realm.getInstance(pContext);
+        realm.beginTransaction();
 
-		realm.commitTransaction();
+        final RealmQuery<ShadowVPNConfigure> query = realm.where(ShadowVPNConfigure.class);
+        final RealmResults<ShadowVPNConfigure> configures = query.findAll();
 
-		return configures;
-	}
+        realm.commitTransaction();
 
-	public static ShadowVPNConfigure update(final Context pContext, final ShadowVPNConfigure pShadowVPNConfigure, final String pTitle, final String pServerIP, final int pPort, final String pPassword, final String pLocalIP, final int pMaximumTransmissionUnits, final boolean pBypassChinaRoutes, final boolean pSelected)
-	{
-		final Realm realm = Realm.getInstance(pContext);
-		realm.beginTransaction();
+        return configures;
+    }
 
-		pShadowVPNConfigure.setTitle(pTitle);
-		pShadowVPNConfigure.setServerIP(pServerIP);
-		pShadowVPNConfigure.setPort(pPort);
-		pShadowVPNConfigure.setPassword(pPassword);
-		pShadowVPNConfigure.setLocalIP(pLocalIP);
-		pShadowVPNConfigure.setMaximumTransmissionUnits(pMaximumTransmissionUnits);
-		pShadowVPNConfigure.setBypassChinaRoutes(pBypassChinaRoutes);
-		pShadowVPNConfigure.setSelected(pSelected);
+    public static ShadowVPNConfigure update(final Context pContext,
+            final ShadowVPNConfigure pShadowVPNConfigure, final String pTitle,
+            final String pServerIP, final int pPort, final String pPassword, final String pUserToken, final String pLocalIP,
+            final int pMaximumTransmissionUnits, final int pConcurrency,
+            final boolean pBypassChinaRoutes, final boolean pSelected) {
+        final Realm realm = Realm.getInstance(pContext);
+        realm.beginTransaction();
 
-		realm.commitTransaction();
+        pShadowVPNConfigure.setTitle(pTitle);
+        pShadowVPNConfigure.setServerIP(pServerIP);
+        pShadowVPNConfigure.setPort(pPort);
+        pShadowVPNConfigure.setPassword(pPassword);
+        pShadowVPNConfigure.setUserToken(pUserToken);
+        pShadowVPNConfigure.setLocalIP(pLocalIP);
+        pShadowVPNConfigure.setMaximumTransmissionUnits(pMaximumTransmissionUnits);
+        pShadowVPNConfigure.setBypassChinaRoutes(pBypassChinaRoutes);
+        pShadowVPNConfigure.setSelected(pSelected);
+        pShadowVPNConfigure.setConcurrency(pConcurrency);
 
-		return pShadowVPNConfigure;
-	}
+        realm.commitTransaction();
 
-	public static void selectShadowVPNConfigure(final Context pContext, final String pTitle)
-	{
-		final ShadowVPNConfigure configure = ShadowVPNConfigureHelper.exists(pContext, pTitle);
+        return pShadowVPNConfigure;
+    }
 
-		if (configure != null)
-		{
-			ShadowVPNConfigureHelper.update(pContext, configure, configure.getTitle(), configure.getServerIP(), configure.getPort(), configure.getPassword(), configure.getLocalIP(), configure.getMaximumTransmissionUnits(), configure.isBypassChinaRoutes(), true);
-		}
-	}
+    public static void selectShadowVPNConfigure(final Context pContext, final String pTitle) {
+        final ShadowVPNConfigure configure = ShadowVPNConfigureHelper.exists(pContext, pTitle);
 
-	public static void resetAllSelectedValue(final Context pContext)
-	{
-		final RealmResults<ShadowVPNConfigure> shadowVPNConfigureRealmResults = ShadowVPNConfigureHelper.getAll(pContext);
+        if (configure != null) {
+            ShadowVPNConfigureHelper
+                    .update(pContext, configure, configure.getTitle(), configure.getServerIP(),
+                            configure.getPort(), configure.getPassword(), configure.getUserToken(), configure.getLocalIP(),
+                            configure.getMaximumTransmissionUnits(), configure.getConcurrency(),
+                            configure.isBypassChinaRoutes(), true);
+        }
+    }
 
-		final Realm realm = Realm.getInstance(pContext);
-		realm.beginTransaction();
+    public static void resetAllSelectedValue(final Context pContext) {
+        final RealmResults<ShadowVPNConfigure> shadowVPNConfigureRealmResults = ShadowVPNConfigureHelper
+                .getAll(pContext);
 
-		for (final ShadowVPNConfigure configure : shadowVPNConfigureRealmResults)
-		{
-			configure.setSelected(false);
-		}
+        final Realm realm = Realm.getInstance(pContext);
+        realm.beginTransaction();
 
-		realm.commitTransaction();
-	}
+        Iterator<ShadowVPNConfigure> iterator = shadowVPNConfigureRealmResults.iterator();
+        while (iterator.hasNext()) {
+            iterator.next().setSelected(false);
+        }
+        realm.commitTransaction();
+    }
 }
