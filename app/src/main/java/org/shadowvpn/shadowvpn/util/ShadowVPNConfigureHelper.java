@@ -2,8 +2,6 @@ package org.shadowvpn.shadowvpn.util;
 
 import org.shadowvpn.shadowvpn.model.ShadowVPNConfigure;
 
-import java.util.Iterator;
-
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -108,17 +106,31 @@ public class ShadowVPNConfigureHelper {
         }
     }
 
-    public static void resetAllSelectedValue() {
-        final RealmResults<ShadowVPNConfigure> shadowVPNConfigureRealmResults = ShadowVPNConfigureHelper
-                .getAll();
+    public static void unselectShadowVPNConfigure(final String pTitle) {
+        final ShadowVPNConfigure configure = ShadowVPNConfigureHelper.exists(pTitle);
 
-        final Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-
-        Iterator<ShadowVPNConfigure> iterator = shadowVPNConfigureRealmResults.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().setSelected(false);
+        if (configure != null) {
+            ShadowVPNConfigureHelper
+                    .update(configure, configure.getTitle(), configure.getServerIP(),
+                            configure.getPort(), configure.getPassword(), configure.getUserToken(),
+                            configure.getLocalIP(), configure.getMaximumTransmissionUnits(),
+                            configure.getConcurrency(), configure.isBypassChinaRoutes(), false);
         }
+    }
+
+    public static void resetAllSelectedValue() {
+        final Realm realm = Realm.getDefaultInstance();
+
+        final RealmQuery<ShadowVPNConfigure> query = realm.where(ShadowVPNConfigure.class);
+        final RealmResults<ShadowVPNConfigure> configures = query.findAll();
+        realm.beginTransaction();
+        for (int i = 0; i < configures.size(); i ++) {
+            ShadowVPNConfigure conf = configures.get(i);
+
+            conf.setSelected(false);
+        }
+
         realm.commitTransaction();
+
     }
 }

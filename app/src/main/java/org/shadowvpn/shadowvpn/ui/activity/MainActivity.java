@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements IOnFragmentIntera
         if (this.mShadowVPNService != null) {
             this.mShadowVPNService.stopVPN();
         }
+        ShadowVPNConfigureHelper.unselectShadowVPNConfigure(pShadowVPNConfigure.getTitle());
     }
 
     @Override

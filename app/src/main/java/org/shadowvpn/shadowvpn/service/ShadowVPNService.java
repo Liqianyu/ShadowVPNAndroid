@@ -196,10 +196,9 @@ public class ShadowVPNService extends VpnService {
     @Override
     public void onDestroy() {
         this.mServiceLooper.quit();
-
         ShadowVPNConfigureHelper.resetAllSelectedValue();
-
         this.stopVPN();
+        super.onDestroy();
     }
 
     @Override

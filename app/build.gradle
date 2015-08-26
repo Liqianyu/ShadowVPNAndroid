@@ -5,7 +5,7 @@ android {
 	buildToolsVersion "23.0.0"
 
 	defaultConfig {
-		applicationId "org.shadowvpn.shadowvpn"
+		applicationId "im.amomo.shadowvpn"
 		minSdkVersion 15
 		targetSdkVersion 23
 		versionCode 2
