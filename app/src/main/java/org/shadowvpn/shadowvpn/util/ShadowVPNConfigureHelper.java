@@ -1,7 +1,5 @@
 package org.shadowvpn.shadowvpn.util;
 
-import android.content.Context;
-
 import org.shadowvpn.shadowvpn.model.ShadowVPNConfigure;
 
 import java.util.Iterator;
@@ -17,11 +15,11 @@ public class ShadowVPNConfigureHelper {
 
     public static final int DEFAULT_CONCURRENCY = 1;
 
-    public static ShadowVPNConfigure create(final Context pContext, final String pTitle,
-            final String pServerIP, final int pPort, final String pPassword, final String pUserToken, final String pLocalIP,
-            final int pMaximumTransmissionUnits, final int pConcurrency,
-            final boolean pBypassChinaRoutes) {
-        final Realm realm = Realm.getInstance(pContext);
+    public static ShadowVPNConfigure create(final String pTitle,
+            final String pServerIP, final int pPort, final String pPassword,
+            final String pUserToken, final String pLocalIP, final int pMaximumTransmissionUnits,
+            final int pConcurrency, final boolean pBypassChinaRoutes) {
+        final Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
         final ShadowVPNConfigure configure = realm.createObject(ShadowVPNConfigure.class);
@@ -40,8 +38,8 @@ public class ShadowVPNConfigureHelper {
         return configure;
     }
 
-    public static void delete(final Context pContext, final String pTitle) {
-        final Realm realm = Realm.getInstance(pContext);
+    public static void delete(final String pTitle) {
+        final Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
         final RealmQuery<ShadowVPNConfigure> shadowVPNConfigureRealmQuery = realm
@@ -53,8 +51,8 @@ public class ShadowVPNConfigureHelper {
         realm.commitTransaction();
     }
 
-    public static ShadowVPNConfigure exists(final Context pContext, final String pTitle) {
-        final Realm realm = Realm.getInstance(pContext);
+    public static ShadowVPNConfigure exists(final String pTitle) {
+        final Realm realm = Realm.getDefaultInstance();
 
         final RealmQuery<ShadowVPNConfigure> shadowVPNConfigureRealmQuery = realm
                 .where(ShadowVPNConfigure.class);
@@ -63,8 +61,8 @@ public class ShadowVPNConfigureHelper {
         return shadowVPNConfigureRealmQuery.findFirst();
     }
 
-    public static RealmResults<ShadowVPNConfigure> getAll(final Context pContext) {
-        final Realm realm = Realm.getInstance(pContext);
+    public static RealmResults<ShadowVPNConfigure> getAll() {
+        final Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
         final RealmQuery<ShadowVPNConfigure> query = realm.where(ShadowVPNConfigure.class);
@@ -75,12 +73,11 @@ public class ShadowVPNConfigureHelper {
         return configures;
     }
 
-    public static ShadowVPNConfigure update(final Context pContext,
-            final ShadowVPNConfigure pShadowVPNConfigure, final String pTitle,
-            final String pServerIP, final int pPort, final String pPassword, final String pUserToken, final String pLocalIP,
-            final int pMaximumTransmissionUnits, final int pConcurrency,
-            final boolean pBypassChinaRoutes, final boolean pSelected) {
-        final Realm realm = Realm.getInstance(pContext);
+    public static ShadowVPNConfigure update(final ShadowVPNConfigure pShadowVPNConfigure, final String pTitle,
+            final String pServerIP, final int pPort, final String pPassword,
+            final String pUserToken, final String pLocalIP, final int pMaximumTransmissionUnits,
+            final int pConcurrency, final boolean pBypassChinaRoutes, final boolean pSelected) {
+        final Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
         pShadowVPNConfigure.setTitle(pTitle);
@@ -99,23 +96,23 @@ public class ShadowVPNConfigureHelper {
         return pShadowVPNConfigure;
     }
 
-    public static void selectShadowVPNConfigure(final Context pContext, final String pTitle) {
-        final ShadowVPNConfigure configure = ShadowVPNConfigureHelper.exists(pContext, pTitle);
+    public static void selectShadowVPNConfigure(final String pTitle) {
+        final ShadowVPNConfigure configure = ShadowVPNConfigureHelper.exists(pTitle);
 
         if (configure != null) {
             ShadowVPNConfigureHelper
-                    .update(pContext, configure, configure.getTitle(), configure.getServerIP(),
-                            configure.getPort(), configure.getPassword(), configure.getUserToken(), configure.getLocalIP(),
-                            configure.getMaximumTransmissionUnits(), configure.getConcurrency(),
-                            configure.isBypassChinaRoutes(), true);
+                    .update(configure, configure.getTitle(), configure.getServerIP(),
+                            configure.getPort(), configure.getPassword(), configure.getUserToken(),
+                            configure.getLocalIP(), configure.getMaximumTransmissionUnits(),
+                            configure.getConcurrency(), configure.isBypassChinaRoutes(), true);
         }
     }
 
-    public static void resetAllSelectedValue(final Context pContext) {
+    public static void resetAllSelectedValue() {
         final RealmResults<ShadowVPNConfigure> shadowVPNConfigureRealmResults = ShadowVPNConfigureHelper
-                .getAll(pContext);
+                .getAll();
 
-        final Realm realm = Realm.getInstance(pContext);
+        final Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
         Iterator<ShadowVPNConfigure> iterator = shadowVPNConfigureRealmResults.iterator();

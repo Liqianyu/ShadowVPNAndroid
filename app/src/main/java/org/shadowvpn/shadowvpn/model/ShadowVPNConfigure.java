@@ -1,8 +1,11 @@
 package org.shadowvpn.shadowvpn.model;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class ShadowVPNConfigure extends RealmObject {
+
+    @PrimaryKey
     private String title;
 
     private String serverIP;

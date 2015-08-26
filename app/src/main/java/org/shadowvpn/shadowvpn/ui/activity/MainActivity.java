@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements IOnFragmentIntera
 
     @Override
     public void onShadowVPNConfigureDelete(final ShadowVPNConfigure pShadowVPNConfigure) {
-        ShadowVPNConfigureHelper.delete(this, pShadowVPNConfigure.getTitle());
+        ShadowVPNConfigureHelper.delete(pShadowVPNConfigure.getTitle());
     }
 
     @Override

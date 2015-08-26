@@ -27,8 +27,7 @@ public class ShadowVPNConfigureAdapter extends BaseAdapter implements RealmChang
 
         this.mShadowVPNConfigures = pShadowVPNConfigureRealmResults;
 
-        Realm.getInstance(this.mContext)
-                .addChangeListener(this);
+        Realm.getDefaultInstance().addChangeListener(this);
     }
 
     public Context getContext() {

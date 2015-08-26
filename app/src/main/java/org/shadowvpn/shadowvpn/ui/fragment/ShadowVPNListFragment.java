@@ -54,7 +54,7 @@ public class ShadowVPNListFragment extends ListFragment {
         super.onViewCreated(pView, pSavedInstanceState);
 
         this.mShadowVPNConfigureAdapter = new ShadowVPNConfigureAdapter(this.getActivity(),
-                ShadowVPNConfigureHelper.getAll(this.getActivity()));
+                ShadowVPNConfigureHelper.getAll());
 
         this.setListAdapter(this.mShadowVPNConfigureAdapter);
 

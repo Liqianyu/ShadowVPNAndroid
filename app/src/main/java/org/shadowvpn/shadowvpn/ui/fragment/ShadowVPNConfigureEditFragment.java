@@ -82,7 +82,7 @@ public class ShadowVPNConfigureEditFragment extends Fragment {
 
         } else {
             final ShadowVPNConfigure configure = ShadowVPNConfigureHelper
-                    .exists(this.getActivity(), this.mTitle);
+                    .exists(this.mTitle);
 
             this.mTitleText.setText(configure.getTitle());
             this.mServerIPText.setText(configure.getServerIP());
@@ -129,7 +129,7 @@ public class ShadowVPNConfigureEditFragment extends Fragment {
                 this.getActivity().finish();
                 return true;
             case R.id.menu_delete:
-                ShadowVPNConfigureHelper.delete(this.getActivity(), this.mTitle);
+                ShadowVPNConfigureHelper.delete(this.mTitle);
                 this.getActivity().finish();
                 return true;
             default:
@@ -156,7 +156,7 @@ public class ShadowVPNConfigureEditFragment extends Fragment {
                 final boolean bypassChinaRoutes = this.mBypassChinaRoutesSwitch.isChecked();
 
                 ShadowVPNConfigureHelper
-                        .create(this.getActivity(), title, serverIP, port, password, userToken,
+                        .create(title, serverIP, port, password, userToken,
                                 localIP, maximumTransmissionUnits, concurrency, bypassChinaRoutes);
 
                 return true;
@@ -171,7 +171,7 @@ public class ShadowVPNConfigureEditFragment extends Fragment {
 
         if (inputResult) {
             final ShadowVPNConfigure shadowVPNConfigure = ShadowVPNConfigureHelper
-                    .exists(this.getActivity(), this.mTitle);
+                    .exists(this.mTitle);
 
             final String title = this.mTitleText.getText().toString();
             final String serverIP = this.mServerIPText.getText().toString();
@@ -185,7 +185,7 @@ public class ShadowVPNConfigureEditFragment extends Fragment {
             final boolean bypassChinaRoutes = this.mBypassChinaRoutesSwitch.isChecked();
 
             ShadowVPNConfigureHelper
-                    .update(this.getActivity(), shadowVPNConfigure, title, serverIP, port, password,
+                    .update(shadowVPNConfigure, title, serverIP, port, password,
                             userToken, localIP, maximumTransmissionUnits, concurrency,
                             bypassChinaRoutes, shadowVPNConfigure.isSelected());
         }
@@ -244,7 +244,7 @@ public class ShadowVPNConfigureEditFragment extends Fragment {
         final String title = this.mTitleText.getText().toString();
 
         final ShadowVPNConfigure configure = ShadowVPNConfigureHelper
-                .exists(this.getActivity(), title);
+                .exists(title);
 
         if (configure != null) {
             Toast.makeText(this.getActivity(),

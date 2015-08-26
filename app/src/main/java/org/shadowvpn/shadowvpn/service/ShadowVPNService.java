@@ -158,7 +158,7 @@ public class ShadowVPNService extends VpnService {
 
         this.protect(this.mShadowVPN.getSockFileDescriptor());
 
-        ShadowVPNConfigureHelper.selectShadowVPNConfigure(this, title);
+        ShadowVPNConfigureHelper.selectShadowVPNConfigure(title);
 
         this.mShadowVPN.start();
     }
@@ -197,7 +197,7 @@ public class ShadowVPNService extends VpnService {
     public void onDestroy() {
         this.mServiceLooper.quit();
 
-        ShadowVPNConfigureHelper.resetAllSelectedValue(this);
+        ShadowVPNConfigureHelper.resetAllSelectedValue();
 
         this.stopVPN();
     }
