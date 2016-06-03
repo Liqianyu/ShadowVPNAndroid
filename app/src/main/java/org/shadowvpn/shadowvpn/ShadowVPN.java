@@ -6,7 +6,7 @@ import android.util.Log;
 import java.io.IOException;
 
 public class ShadowVPN {
-    private static final int DEFAULT_MAXIMUM_TRANSMISSION_UNITS = 1440;
+    private static final int DEFAULT_MAXIMUM_TRANSMISSION_UNITS = 1432;
 
     private static final int DEFAULT_CONCURRENCY = 1;
 
