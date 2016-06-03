@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ShadowVPN</string>
+    <string name="title_activity_main">@string/app_name</string>
+    <string name="title_activity_configure_edit">編輯配置</string>
+
+    <string name="options_menu_add">添加配置</string>
+    <string name="options_menu_discard">放棄更改</string>
+    <string name="options_menu_delete">刪除</string>
+
+    <string name="context_menu_stop_configure">斷開連接</string>
+    <string name="context_menu_edit_configure">編輯配置</string>
+    <string name="context_menu_delete_configure">刪除配置</string>
+
+    <string name="label_configure_title">名稱</string>
+    <string name="label_configure_server_ip">伺服器</string>
+    <string name="label_configure_port">埠口</string>
+    <string name="label_configure_password">密碼</string>
+    <string name="label_configure_user_token">用戶驗證</string>
+    <string name="label_configure_local_ip">本地IP</string>
+    <string name="label_configure_switch_bypass_china_routes">繞過中國大陸地址</string>
+    <string name="label_configure_maximum_transmission_units">MTU</string>
+    <string name="label_configure_concurrency">並發數</string>
+
+    <string name="toast_vpn_configure_title_null">名稱不能為空</string>
+    <string name="toast_vpn_configure_server_ip_null">伺服器IP不能為空</string>
+    <string name="toast_vpn_configure_port_null">埠口不能為空</string>
+    <string name="toast_vpn_configure_password_null">密碼不能為空</string>
+    <string name="toast_vpn_configure_local_ip_null">本地IP不能為空</string>
+    <string name="toast_vpn_configure_maximum_transmission_units_null">MTU不能為空</string>
+    <string name="toast_vpn_configure_exists">配置：[%1$s] 已存在，請修改名稱</string>
+
+</resources>
